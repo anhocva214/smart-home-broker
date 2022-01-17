@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-EXPOSE 1883
+EXPOSE 1883 3883
 
 
 #update ubuntu
