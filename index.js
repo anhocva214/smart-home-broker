@@ -8,7 +8,11 @@ ws.createServer({server: httpServer}, aedes.handle)
 
 // constants
 const topicAuthorize = [
-    '/nodejs/mqtt'
+    '/nodejs/mqtt',
+    '/get/type_data',
+    '/post/data/not_encrypt',
+    '/post/data/aes_encrypt',
+    '/post/data/chacha_encrypt',
 ]
 
 server.listen(port, function () {
@@ -32,6 +36,7 @@ aedes.authenticate = (client, username, password, callback) => {
 
 // authorizing client to publish on a message topic
 aedes.authorizePublish = (client, packet, callback) => {
+    console.log(`packet.topic: `, packet.topic)
     if (topicAuthorize.indexOf(packet.topic) >= 0) {
         return callback(null);
     }
