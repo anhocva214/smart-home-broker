@@ -1,10 +1,10 @@
 const mqtt = require('mqtt')
 
 
-// const host = '113.161.225.11'
-const host = 'localhost'
-// const port = '3883'
-const port =  '1883'
+const host = '113.161.225.11'
+// const host = 'localhost'
+const port = '3883'
+// const port =  '1883'
 const clientId = `mqtt_${Math.random().toString(16).slice(3)}`
 
 
@@ -37,14 +37,14 @@ const dataSample = {
 }
 client.on('connect', () => {
   console.log('Connected')
-  client.subscribe(['/get/type_data'], () => {
+  client.subscribe(['/get/type_data', topic], () => {
     console.log(`Subscribe to topic '/get/type_data'`)
   })
-  // client.publish(topic, JSON.stringify(dataSample), { qos: 0, retain: false }, (error) => {
-  //   if (error) {
-  //     console.error(error)
-  //   }
-  // })
+  client.publish(topic, JSON.stringify(dataSample), { qos: 0, retain: false }, (error) => {
+    if (error) {
+      console.error(error)
+    }
+  })
 })
 client.on('message', (topic, payload) => {
   console.log('Received Message', topic, payload.toString())

@@ -35,14 +35,14 @@ aedes.authenticate = (client, username, password, callback) => {
 }
 
 // authorizing client to publish on a message topic
-aedes.authorizePublish = (client, packet, callback) => {
-    console.log(`packet.topic: `, packet.topic)
-    if (topicAuthorize.indexOf(packet.topic) >= 0) {
-        return callback(null);
-    }
-    console.log('Error ! Unauthorized publish to a topic.')
-    return callback(new Error('You are not authorized to publish on this message topic.'));
-}
+// aedes.authorizePublish = (client, packet, callback) => {
+//     console.log(`packet.topic: `, packet.topic)
+//     if (topicAuthorize.indexOf(packet.topic) >= 0) {
+//         return callback(null);
+//     }
+//     console.log('Error ! Unauthorized publish to a topic.')
+//     return callback(new Error('You are not authorized to publish on this message topic.'));
+// }
 
 // emitted when a client connects to the broker
 aedes.on('client', function (client) {
